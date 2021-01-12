@@ -11,6 +11,7 @@
 #import "ArchiveInfo.h"
 #import "UUIDInfo.h"
 #import "ArchiveFilesScrollView.h"
+#import "YZFileHandle.h"
 
 
 @interface MainWindowViewController ()<NSTableViewDelegate, NSTableViewDataSource, NSDraggingDestination>
@@ -68,6 +69,7 @@
 
 @property (weak) IBOutlet ArchiveFilesScrollView *archiveFilesScrollView;
 
+@property (nonatomic, strong) YZFileHandle *fileHandle;
 @end
 
 @implementation MainWindowViewController
@@ -360,6 +362,22 @@
 
 - (void)doubleActionMethod{
     NSLog(@"double action");
+}
+
+- (IBAction)crashAnalyse:(id)sender {
+//    if(self.selectedArchiveInfo == nil){
+//        return;
+//    }
+//
+//    if(self.selectedUUIDInfo == nil){
+//        return;
+//    }
+    
+    if (self.defaultSlideAddressLabel.stringValue.length <= 0) {
+        return;
+    }
+    _fileHandle = [[YZFileHandle alloc] initWithContentOfFile:self.defaultSlideAddressLabel.stringValue];
+    
 }
 
 - (IBAction)analyse:(id)sender {

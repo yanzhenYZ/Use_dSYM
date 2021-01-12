@@ -19,6 +19,7 @@
 		80B88CA31D476C5000B2B83D /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B88CA11D476C5000B2B83D /* AboutWindowController.m */; };
 		80B88CA41D476C5000B2B83D /* AboutWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B88CA21D476C5000B2B83D /* AboutWindowController.xib */; };
 		80D250631DD1C5A8009D7EEC /* NSAttributedString+Hyperlink.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D250621DD1C5A8009D7EEC /* NSAttributedString+Hyperlink.m */; };
+		9BE85CFD25AD9293005C7D82 /* YZFileHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE85CFC25AD9293005C7D82 /* YZFileHandle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		80B88CA21D476C5000B2B83D /* AboutWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutWindowController.xib; sourceTree = "<group>"; };
 		80D250611DD1C5A8009D7EEC /* NSAttributedString+Hyperlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Hyperlink.h"; sourceTree = "<group>"; };
 		80D250621DD1C5A8009D7EEC /* NSAttributedString+Hyperlink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Hyperlink.m"; sourceTree = "<group>"; };
+		9BE85CFB25AD9293005C7D82 /* YZFileHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZFileHandle.h; sourceTree = "<group>"; };
+		9BE85CFC25AD9293005C7D82 /* YZFileHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZFileHandle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +67,8 @@
 				8057382E1D486B4D00CEBA84 /* ArchiveInfo.m */,
 				805738301D4878F300CEBA84 /* UUIDInfo.h */,
 				805738311D4878F300CEBA84 /* UUIDInfo.m */,
+				9BE85CFB25AD9293005C7D82 /* YZFileHandle.h */,
+				9BE85CFC25AD9293005C7D82 /* YZFileHandle.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 			files = (
 				80B88CA31D476C5000B2B83D /* AboutWindowController.m in Sources */,
 				80A47DD31D4B343F00626266 /* ArchiveFilesScrollView.m in Sources */,
+				9BE85CFD25AD9293005C7D82 /* YZFileHandle.m in Sources */,
 				80D250631DD1C5A8009D7EEC /* NSAttributedString+Hyperlink.m in Sources */,
 				80817F2F1D45F4D500CD2A11 /* main.m in Sources */,
 				805738321D4878F300CEBA84 /* UUIDInfo.m in Sources */,

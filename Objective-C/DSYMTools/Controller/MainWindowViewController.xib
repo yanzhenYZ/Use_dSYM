@@ -263,6 +263,19 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DwC-3G-bZl">
+                        <rect key="frame" x="387" y="104" width="94" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="icM-fC-R1Y"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="crash" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jQn-PB-Fqu">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="crashAnalyse:" target="-2" id="0Hj-7O-yDF"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Plr-D5-xz6" firstAttribute="centerX" secondItem="o8b-PU-Uou" secondAttribute="centerX" id="2iR-Sy-9D5"/>
@@ -270,12 +283,14 @@
                     <constraint firstItem="o8b-PU-Uou" firstAttribute="height" secondItem="aMP-DR-9vD" secondAttribute="height" id="9iW-Rw-yut"/>
                     <constraint firstItem="Plr-D5-xz6" firstAttribute="top" secondItem="o8b-PU-Uou" secondAttribute="bottom" constant="34" id="CNI-zQ-nad"/>
                     <constraint firstItem="M5P-C5-Et8" firstAttribute="leading" secondItem="z8h-yZ-msW" secondAttribute="leading" constant="8" id="Ewl-EF-e7N"/>
+                    <constraint firstItem="DwC-3G-bZl" firstAttribute="leading" secondItem="Plr-D5-xz6" secondAttribute="trailing" constant="20" id="GtT-Kh-tKo"/>
                     <constraint firstAttribute="trailing" secondItem="M5P-C5-Et8" secondAttribute="trailing" constant="8" id="IfO-0r-UXu"/>
                     <constraint firstItem="aMP-DR-9vD" firstAttribute="width" secondItem="M5P-C5-Et8" secondAttribute="width" id="JrV-3f-gyn"/>
                     <constraint firstItem="SIw-er-Ij9" firstAttribute="leading" secondItem="z8h-yZ-msW" secondAttribute="leading" constant="8" id="KFe-yC-yiQ"/>
                     <constraint firstItem="M5P-C5-Et8" firstAttribute="top" secondItem="adk-IY-a8c" secondAttribute="bottom" constant="10" id="M1z-tF-NQI"/>
                     <constraint firstItem="o8b-PU-Uou" firstAttribute="centerX" secondItem="aMP-DR-9vD" secondAttribute="centerX" id="MXl-fX-6oK"/>
                     <constraint firstAttribute="trailing" secondItem="SIw-er-Ij9" secondAttribute="trailing" constant="8" id="Rn0-zW-Mod"/>
+                    <constraint firstItem="DwC-3G-bZl" firstAttribute="top" secondItem="Plr-D5-xz6" secondAttribute="top" id="Ue3-4D-eKT"/>
                     <constraint firstItem="aMP-DR-9vD" firstAttribute="centerX" secondItem="M5P-C5-Et8" secondAttribute="centerX" id="Ugx-zh-KfP"/>
                     <constraint firstItem="o8b-PU-Uou" firstAttribute="top" secondItem="aMP-DR-9vD" secondAttribute="bottom" constant="10" id="YMY-B4-z4w"/>
                     <constraint firstItem="o8b-PU-Uou" firstAttribute="width" secondItem="aMP-DR-9vD" secondAttribute="width" id="dg4-Vb-RHP"/>
@@ -318,7 +333,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="zE6-AN-yCR"/>
             </connections>
-            <point key="canvasLocation" x="-353" y="433"/>
+            <point key="canvasLocation" x="-353.5" y="433"/>
         </window>
     </objects>
     <resources>

@@ -488,36 +488,40 @@
         NSLog(@"%@",fileURL);
     }
 
-    if([[pboard types] containsObject:NSFilenamesPboardType]){
-        NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
-        NSMutableArray *archiveFilePaths = [NSMutableArray arrayWithCapacity:1];
-        for(NSString *filePath in files){
-            if([filePath.pathExtension isEqualToString:@"xcarchive"]){
-                NSLog(@"%@", filePath);
-                [archiveFilePaths addObject:filePath];
-            }
-
-            if([filePath.pathExtension isEqualToString:@"dSYM"]){
-                [archiveFilePaths addObject:filePath];
-            }
-            
-            //crash files
-            if ([filePath.pathExtension isEqualToString:@"crash"]) {
-                NSLog(@"crash files:%@", filePath);
-            }
-        }
-        
-        if(archiveFilePaths.count == 0){
-            NSLog(@"没有包含任何 xcarchive 文件");
-            return NO;
-        }
-        
-        [self resetPreInformation];
-
-        [self handleArchiveFileWithPath:archiveFilePaths];
-
-        
+    if (![[pboard types] containsObject:NSFilenamesPboardType]) {
+        return YES;
     }
+    NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
+    NSMutableArray *archiveFilePaths = [NSMutableArray arrayWithCapacity:1];
+    NSMutableArray *crashFiles = [NSMutableArray arrayWithCapacity:1];
+    for(NSString *filePath in files){
+        if([filePath.pathExtension isEqualToString:@"xcarchive"]){
+            NSLog(@"%@", filePath);
+            [archiveFilePaths addObject:filePath];
+        }
+
+        if([filePath.pathExtension isEqualToString:@"dSYM"]){
+            [archiveFilePaths addObject:filePath];
+        }
+        
+        //crash files
+        if ([filePath.pathExtension isEqualToString:@"crash"]) {
+            [crashFiles addObject:filePath];
+        }
+    }
+    
+    if (crashFiles.count > 0) {
+        _defaultSlideAddressLabel.stringValue = crashFiles.firstObject;
+    }
+    
+    if(archiveFilePaths.count == 0){
+        NSLog(@"没有包含任何 xcarchive 文件");
+        return NO;
+    }
+    
+    [self resetPreInformation];
+
+    [self handleArchiveFileWithPath:archiveFilePaths];
 
     return YES;
 }

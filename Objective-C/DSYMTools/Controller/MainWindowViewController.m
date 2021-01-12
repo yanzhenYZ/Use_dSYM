@@ -355,7 +355,7 @@
     NSInteger tag = radioButton.tag;
     _selectedUUIDInfo = _selectedArchiveInfo.uuidInfos[tag - 1];
     _selectedUUIDLabel.stringValue = _selectedUUIDInfo.uuid;
-    _defaultSlideAddressLabel.stringValue = _selectedUUIDInfo.defaultSlideAddress;
+    //_defaultSlideAddressLabel.stringValue = _selectedUUIDInfo.defaultSlideAddress;
 }
 
 - (void)doubleActionMethod{
@@ -374,16 +374,15 @@
         return;
     }
     
-#if 1 //add by self
-    self.defaultSlideAddressLabel.stringValue = self.errorMemoryAddressLabel.stringValue;
-#endif
-    
-    if([self.defaultSlideAddressLabel.stringValue isEqualToString:@""]){
-        return;
-    }
+//    self.defaultSlideAddressLabel.stringValue = self.errorMemoryAddressLabel.stringValue;
+//
+//    if([self.defaultSlideAddressLabel.stringValue isEqualToString:@""]){
+//        return;
+//    }
     
     NSString *result = @"";
-    NSString *slidValueStr = self.defaultSlideAddressLabel.stringValue;
+//    NSString *slidValueStr = self.defaultSlideAddressLabel.stringValue;
+    NSString *slidValueStr = self.errorMemoryAddressLabel.stringValue;
     if (slidValueStr.length > 0) {
         if (![slidValueStr hasPrefix:@"0x"] && ![slidValueStr hasPrefix:@"0X"]) {
             NSString *memoryAddressToTen = [self sixtyToTen:self.errorMemoryAddressLabel.stringValue];
@@ -393,6 +392,7 @@
             NSString *slideAddressSixTyStr = [self tenToSixTy:slideAddressTenInt];
             
             NSString *commandString = [NSString stringWithFormat:@"xcrun atos -arch %@ -o \"%@\" -l %@ %@", self.selectedUUIDInfo.arch, self.selectedUUIDInfo.executableFilePath, slideAddressSixTyStr, self.errorMemoryAddressLabel.stringValue];
+            NSLog(@"xxx__%@", commandString);//0x0000000102d1bfe8  1376232
             result = [self runCommand:commandString];
             
         }else{
@@ -400,7 +400,7 @@
             NSInteger memoryAddressTenInt = memoryAddressToTen.integerValue + self.errorTextField.stringValue.integerValue;
             NSString *slideAddressSixTyStr = [self tenToSixTy:memoryAddressTenInt];
             
-            NSString *commandString = [NSString stringWithFormat:@"xcrun atos -arch %@ -o \"%@\" -l %@ %@", self.selectedUUIDInfo.arch, self.selectedUUIDInfo.executableFilePath, self.defaultSlideAddressLabel.stringValue, slideAddressSixTyStr];
+            NSString *commandString = [NSString stringWithFormat:@"xcrun atos -arch %@ -o \"%@\" -l %@ %@", self.selectedUUIDInfo.arch, self.selectedUUIDInfo.executableFilePath, slidValueStr, slideAddressSixTyStr];
             result = [self runCommand:commandString];
         }
     }
@@ -499,6 +499,11 @@
 
             if([filePath.pathExtension isEqualToString:@"dSYM"]){
                 [archiveFilePaths addObject:filePath];
+            }
+            
+            //crash files
+            if ([filePath.pathExtension isEqualToString:@"crash"]) {
+                NSLog(@"crash files:%@", filePath);
             }
         }
         

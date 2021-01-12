@@ -142,7 +142,7 @@
                             <constraint firstAttribute="height" constant="40" id="r7j-bL-g0W"/>
                         </constraints>
                     </box>
-                    <box hidden="YES" borderType="line" title="默认 Slide Address" translatesAutoresizingMaskIntoConstraints="NO" id="aMP-DR-9vD">
+                    <box borderType="line" title="拖拽.crash文件" translatesAutoresizingMaskIntoConstraints="NO" id="aMP-DR-9vD">
                         <rect key="frame" x="5" y="211" width="537" height="44"/>
                         <view key="contentView" id="LDm-sx-owy">
                             <rect key="frame" x="3" y="3" width="531" height="26"/>
@@ -150,7 +150,7 @@
                             <subviews>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zYe-NZ-isJ">
                                     <rect key="frame" x="4" y="4" width="523" height="22"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="2KT-Wc-wzo">
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="2KT-Wc-wzo">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

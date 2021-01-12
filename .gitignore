@@ -4,3 +4,4 @@ dist/
 test*.py
 *.pyc
 *.psd
+*.xcuserstate

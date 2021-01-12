@@ -59,7 +59,7 @@
         if ([index isEqualToString:@"0"] || index.intValue > 0) {
             //NSLog(@"xx:%@:%@", analyse[2], analyse[5]);
             NSString *result = [self getOri:analyse[2] index:analyse[5]];
-            NSLog(@"1234__:%@  %@", index, result);
+            //NSLog(@"1234__:%@  %@", index, result);
             return result ? [index stringByAppendingFormat:@"  %@", result] : @"\n";
         }
     }

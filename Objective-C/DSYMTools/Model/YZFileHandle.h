@@ -16,6 +16,6 @@
 @property (nonatomic, strong) ArchiveInfo *archive;
 
 - (instancetype)initWithContentOfFile:(NSString *)file;
-
+- (void)start;
 @end
 

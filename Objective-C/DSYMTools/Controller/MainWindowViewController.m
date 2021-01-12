@@ -365,13 +365,13 @@
 }
 
 - (IBAction)crashAnalyse:(id)sender {
-//    if(self.selectedArchiveInfo == nil){
-//        return;
-//    }
-//
-//    if(self.selectedUUIDInfo == nil){
-//        return;
-//    }
+    if(self.selectedArchiveInfo == nil){
+        return;
+    }
+
+    if(self.selectedUUIDInfo == nil){
+        return;
+    }
     
     if (self.defaultSlideAddressLabel.stringValue.length <= 0) {
         return;
@@ -379,6 +379,7 @@
     _fileHandle = [[YZFileHandle alloc] initWithContentOfFile:self.defaultSlideAddressLabel.stringValue];
     _fileHandle.archive = _selectedArchiveInfo;
     _fileHandle.uuid = _selectedUUIDInfo;
+    [_fileHandle start];
     
 }
 

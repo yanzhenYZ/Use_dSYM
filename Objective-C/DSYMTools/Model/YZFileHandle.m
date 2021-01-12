@@ -11,7 +11,7 @@
 #import "UUIDInfo.h"
 
 @interface YZFileHandle ()
-@property (nonatomic, copy) NSString *content;
+@property (nonatomic, copy) NSString *file;
 @end
 
 @implementation YZFileHandle
@@ -19,15 +19,20 @@
 -(instancetype)initWithContentOfFile:(NSString *)file {
     self = [super init];
     if (self) {
-        NSString *content = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
-        NSArray *strings = [content componentsSeparatedByString:@"\n"];
-        if (strings.count <= 0) {
-            NSLog(@"XXX ___ :%@ is not a crash file", file);
-        } else {
-            [self dealWithCrashStrings:strings];
-        }
+        _file = file;
+        
     }
     return self;
+}
+
+- (void)start {
+    NSString *content = [NSString stringWithContentsOfFile:_file encoding:NSUTF8StringEncoding error:nil];
+    NSArray *strings = [content componentsSeparatedByString:@"\n"];
+    if (strings.count <= 0) {
+        NSLog(@"XXX ___ :%@ is not a crash file", _file);
+    } else {
+        [self dealWithCrashStrings:strings];
+    }
 }
 
 - (void)dealWithCrashStrings:(NSArray<NSString *> *)strings {
@@ -40,6 +45,9 @@
             [results addObject:result];
         }
     }];
+    //NSLog(@"%@", results);
+    NSString *result = [results componentsJoinedByString:@""];
+    NSLog(@"%@", result);
 }
 
 - (NSString *)getResult:(NSString *)str {
@@ -51,8 +59,8 @@
         if ([index isEqualToString:@"0"] || index.intValue > 0) {
             //NSLog(@"xx:%@:%@", analyse[2], analyse[5]);
             NSString *result = [self getOri:analyse[2] index:analyse[5]];
-            NSLog(@"1234__:%@", result);
-            return result ? result : @"";
+            NSLog(@"1234__:%@  %@", index, result);
+            return result ? [index stringByAppendingFormat:@"  %@", result] : @"\n";
         }
     }
 //    NSLog(@"__:%@", analyse);
@@ -69,7 +77,7 @@
         NSString *slideAddressSixTyStr = [self tenToSixTy:slideAddressTenInt];
         
         NSString *commandString = [NSString stringWithFormat:@"xcrun atos -arch %@ -o \"%@\" -l %@ %@", self.uuid.arch, self.uuid.executableFilePath, slideAddressSixTyStr, error];
-        NSLog(@"xxx__%@", commandString);//0x0000000102d1bfe8  1376232
+        //NSLog(@"xxx__%@", commandString);//0x0000000102d1bfe8  1376232
         result = [self runCommand:commandString];
         
     }else{

@@ -8,7 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class UUIDInfo;
+@class ArchiveInfo;
 @interface YZFileHandle : NSObject
+
+@property (nonatomic, strong) UUIDInfo *uuid;
+@property (nonatomic, strong) ArchiveInfo *archive;
+
 - (instancetype)initWithContentOfFile:(NSString *)file;
+
 @end
 

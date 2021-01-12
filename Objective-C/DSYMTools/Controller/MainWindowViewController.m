@@ -347,7 +347,7 @@
     [self.radioBox.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     _selectedUUIDInfo = nil;
     self.selectedUUIDLabel.stringValue = @"";
-    self.defaultSlideAddressLabel.stringValue = @"";
+//    self.defaultSlideAddressLabel.stringValue = @"";
     self.errorMemoryAddressLabel.stringValue = @"";
     [self.errorMessageView setString:@""];
 }
@@ -377,6 +377,8 @@
         return;
     }
     _fileHandle = [[YZFileHandle alloc] initWithContentOfFile:self.defaultSlideAddressLabel.stringValue];
+    _fileHandle.archive = _selectedArchiveInfo;
+    _fileHandle.uuid = _selectedUUIDInfo;
     
 }
 
@@ -401,20 +403,21 @@
     NSString *result = @"";
 //    NSString *slidValueStr = self.defaultSlideAddressLabel.stringValue;
     NSString *slidValueStr = self.errorMemoryAddressLabel.stringValue;
+    NSString *error = self.errorMemoryAddressLabel.stringValue;
     if (slidValueStr.length > 0) {
         if (![slidValueStr hasPrefix:@"0x"] && ![slidValueStr hasPrefix:@"0X"]) {
-            NSString *memoryAddressToTen = [self sixtyToTen:self.errorMemoryAddressLabel.stringValue];
+            NSString *memoryAddressToTen = [self sixtyToTen:error];
             NSInteger memoryAddressTenInt = memoryAddressToTen.integerValue;
             
             NSInteger slideAddressTenInt = memoryAddressTenInt - slidValueStr.integerValue;
             NSString *slideAddressSixTyStr = [self tenToSixTy:slideAddressTenInt];
             
-            NSString *commandString = [NSString stringWithFormat:@"xcrun atos -arch %@ -o \"%@\" -l %@ %@", self.selectedUUIDInfo.arch, self.selectedUUIDInfo.executableFilePath, slideAddressSixTyStr, self.errorMemoryAddressLabel.stringValue];
+            NSString *commandString = [NSString stringWithFormat:@"xcrun atos -arch %@ -o \"%@\" -l %@ %@", self.selectedUUIDInfo.arch, self.selectedUUIDInfo.executableFilePath, slideAddressSixTyStr, error];
             NSLog(@"xxx__%@", commandString);//0x0000000102d1bfe8  1376232
             result = [self runCommand:commandString];
             
         }else{
-            NSString *memoryAddressToTen = [self sixtyToTen:self.errorMemoryAddressLabel.stringValue];
+            NSString *memoryAddressToTen = [self sixtyToTen:error];
             NSInteger memoryAddressTenInt = memoryAddressToTen.integerValue + self.errorTextField.stringValue.integerValue;
             NSString *slideAddressSixTyStr = [self tenToSixTy:memoryAddressTenInt];
             

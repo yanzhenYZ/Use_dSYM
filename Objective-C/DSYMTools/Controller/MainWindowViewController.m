@@ -370,14 +370,18 @@
     if(self.selectedUUIDInfo == nil){
         return;
     }
+    if([self.errorMemoryAddressLabel.stringValue isEqualToString:@""]){
+        return;
+    }
+    
+#if 1 //add by self
+    self.defaultSlideAddressLabel.stringValue = self.errorMemoryAddressLabel.stringValue;
+#endif
     
     if([self.defaultSlideAddressLabel.stringValue isEqualToString:@""]){
         return;
     }
     
-    if([self.errorMemoryAddressLabel.stringValue isEqualToString:@""]){
-        return;
-    }
     NSString *result = @"";
     NSString *slidValueStr = self.defaultSlideAddressLabel.stringValue;
     if (slidValueStr.length > 0) {
